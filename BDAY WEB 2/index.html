@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Aldo</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Fredoka', sans-serif;
+      background: linear-gradient(to bottom, #ffb6d9, #ff69b4);
+      overflow-x: hidden;
+    }
+
+    .centered h2 {
+      font-size: 28px;
+      color: white;
+      margin-bottom: -10px; 
+      transform: translateY(-35px); 
+      letter-spacing: 2px;
+    }
+
+    #page-1 .white-box {
+      width: 100%;
+      height: 200px;
+      background-color: white;
+      border-radius: 0px;
+      margin: 10px 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      position: absolute;
+      top: 120px;
+      left: 0;
+      z-index: 0;
+      align-items: center;
+    }
+
+    .page:not(#page-1) .white-box {
+      display: none;
+    }
+
+    .page {
+      width: 100vw;
+      min-height: 100vh;
+      height: auto;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      transition: opacity 0.6s ease-in-out;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .page.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .page.hidden {
+      display: none;
+      opacity: 0;
+    }
+
+    .centered img {
+      width: 300px;
+      height: auto;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tap-icon {
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tap-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .gift-icon {
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .gift-icon:hover {
+      transform: scale(1.1);
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #f9a8d4;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #f472b6;
+    }
+
+    .login-box {
+      background-color: #fff0f5;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+      box-sizing: border-box;
+      z-index: 1;
+    }
+
+    .login-box input {
+      padding: 10px;
+      margin-top: 0px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 250px;
+      box-sizing: border-box;
+    }
+
+    #submit-date {
+      margin-top: 10px;
+    }
+
+    #error-msg {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .message {
+      width: 90%;
+      max-width: 600px;
+      background-color: rgba(255,255,255,0.2);
+      padding: 20px;
+      border-radius: 10px;
+      color: white;
+      font-size: 16px;
+      line-height: 1.5;
+      backdrop-filter: blur(5px);
+      box-sizing: border-box;
+      z-index: 1;
+    }
+
+    .bottom-img {
+      margin-top: 30px;
+      width: 100px;
+      height: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .page2-title {
+      color: white;
+      text-shadow: 2px 2px #ff69b4;
+      font-size: 50px;
+      animation: fadeInUp 1s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .page3-title {
+      color: white;
+      text-shadow: 2px 2px #ff69b4;
+      font-size: 50px;
+      animation: slideUp 0.6s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(80px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .page4-title {
+      color: #e185a2; 
+      font-size: 32px;
+    }
+
+    .page6-title {
+      color: white;
+      font-size: 150px;
+    }
+
+    @media (max-width: 600px) {
+      .centered img,
+      .bottom-img {
+        width: 60px;
+      }
+
+      .message {
+        font-size: 14px;
+      }
+
+      button {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page 1: Tap Me -->
+  <section id="page-1" class="page active">
+    <div class="white-box"></div>
+    <div class="centered">
+      <img src="img/3.gif" alt="Tap Me" class="tap-icon" id="tap-me">
+      <h2>TAP ME</h2>
+    </div>
+  </section>
+
+  <!-- Page 2: Welcome -->
+  <section id="page-2" class="page hidden">
+    <div class="centered">
+       <h1 class="page2-title">WELCOME</h1>
+    </div>
+  </section>
+
+  <!-- Page 3: Welcome + Login -->
+  <section id="page-3" class="page hidden">
+    <div class="centered">
+      <h1 class="page3-title">PENCET DULU DONG</h1>
+      <button id="login-btn">Disini</button>
+    </div>
+  </section>
+
+  <!-- Page 4: Konfirmasi Tanggal -->
+  <section id="page-4" class="page hidden">
+    <div class="login-box">
+       <h2 class="page4-title">COBA KONFIRMASI DULU</h2>
+      <input type="text" id="birthdate" placeholder="Masukin hari tanggal kamu lahir">
+      <button id="submit-date">SUBMIT</button>
+      <p id="error-msg"></p>
+    </div>
+  </section>
+
+  <!-- Page 5: Gift -->
+  <section id="page-5" class="page hidden">
+    <div class="centered">
+      <h2>GET UR GIFT RN!</h2>
+      <img src="img/4.gif" alt="Gift" class="gift-icon" id="gift">
+    </div>
+  </section>
+
+  <!-- Page 6: Ucapan -->
+  <section id="page-6" class="page hidden">
+    <div class="centered">
+      <h2 class="page6-title">HAPPY BIRTHDAY POOKIE</h2>
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4sJmv194lQKWjytpaxH1Vj?utm_source=generator" width="80%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      <img src="img/gif1.gif" alt="Puding">
+      <div class="message">
+        <p>Happy Birthday Aldo Ardiyansah</p>
+        <p>Siapa sangka ngucapin lewat beginian, padahal udah putus wkwkwk memang pada dasarnya gabisa kalo ga effort</p>
+        <p>Aldo, walaupun kita udah lama pisah, dan sekarang hidup kita jalan masing-masing, aku gak pernah sedikitpun doain yang buruk buat Aldo. Iya, mungkin dulu aku pernah kesel, pernah ngatain, pernah marah... tapi itu semua karena dulu aku masih ngerasa Aldo itu rumah. Sekarang, setelah semua waktu yang lewat, aku cuma bisa bilang: aku bangga. Bangga karena Aldo tetap maju, tetap kuat, dan pelan-pelan sampai ke impian yang dulu sering Aldo ceritain.
+Aku seneng lihat Aldo sampai sejauh ini. Meski bukan aku lagi yang nemenin tiap langkahnya, aku tahu Aldo pantas bahagia. Aku pun udah belajar buat hidup sendiri — buat jalanin hari-hari tanpa Aldo. Tapi yang gak pernah berubah… sampai sekarang, belum ada yang ngerti aku kayak Aldo. Belum ada yang bikin aku nyaman kayak Aldo. Belum ada yang bikin aku ngerasa "pulang".
+Tapi aku tahu, aku gak bisa terus naruh harapan. Aku gak bisa terus nunggu seseorang yang belum tentu masih nyimpen tempat buat aku. Jadi sekarang… aku gak berharap apa-apa lagi dari Aldo. Aku gak akan ganggu, gak akan maksa, gak akan nunggu. Aku cuma mau Aldo bahagia, dengan atau tanpa aku.
+Kalau suatu hari nanti, Aldo ngerasa masih pengen aku jadi bagian dari hidup Aldo… maka kali ini, Aldo yang harus perjuangin..</p>
+        <p>Semangat Aldo kecil🍕🍩</p>
+      </div>
+      <img src="img/gif2.gif" alt="Kawaii" class="bottom-img">
+    </div>
+  </section>
+
+  <!-- JS -->
+  <script>
+    const pages = document.querySelectorAll('.page');
+    let currentPage = 0;
+
+    function showPage(index) {
+      pages.forEach((page, i) => {
+        page.classList.remove('active');
+        page.classList.add('hidden');
+        if (i === index) {
+          page.classList.remove('hidden');
+          page.classList.add('active');
+        }
+      });
+      currentPage = index;
+    }
+
+    const tapMe = document.getElementById('tap-me');
+    tapMe.addEventListener('click', () => {
+      showPage(1);
+    });
+
+    const page2 = document.getElementById('page-2');
+    page2.addEventListener('click', () => {
+      showPage(2);
+    });
+
+    const loginBtn = document.getElementById('login-btn');
+    loginBtn.addEventListener('click', () => {
+      showPage(3);
+    });
+
+    const submitBtn = document.getElementById('submit-date');
+    const input = document.getElementById('birthdate');
+    const errorMsg = document.getElementById('error-msg');
+
+    submitBtn.addEventListener('click', () => {
+      const value = input.value.trim();
+      if (value === '25 Juni 2007' || value === '25/06/2007' || value === '25-06-2007') {
+        showPage(4);
+      } else {
+        errorMsg.textContent = 'Coba lagi yaa, tanggalnya belum tepat 💭';
+      }
+    });
+
+    const gift = document.getElementById('gift');
+    gift.addEventListener('click', () => {
+      showPage(5);
+    });
+
+    showPage(0);
+  </script>
+</body>
+</html>
